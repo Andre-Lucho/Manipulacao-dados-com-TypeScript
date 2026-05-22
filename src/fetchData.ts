@@ -1,4 +1,4 @@
-/*Inicialmente, dataFecth retorna uma Promise de any - usar interface*/
+/*Inicialmente, fetchData retorna uma Promise de any - usar interface*/
 export async function fetchData<T>(url: string): Promise<T | null> {
     try {
         const response = await fetch(url);
@@ -10,6 +10,6 @@ export async function fetchData<T>(url: string): Promise<T | null> {
             console.error(`Retorno fetchData: ${error.message}`);
         return null;
         // importante: caso vazio === undefined --> para o script
-        // com null, posso fazer um Type guard - ln 38-main
+        // com null, posso fazer um Type guard - ln 10-main
     }
 }
