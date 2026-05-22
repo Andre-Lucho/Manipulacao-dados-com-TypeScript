@@ -1,59 +1,17 @@
 import { fetchData } from './fetchData';
-
-const url = 'https://api.origamid.dev/json/transacoes.json';
-
-type PaymentType = 'Boleto' | 'Cartão de Crédito';
-type PaymentStatus =
-    | 'Paga'
-    | 'Aguardando pagamento'
-    | 'Recusada pela operadora de cartão'
-    | 'Estornada';
-
-interface PaymentReturn {
-    Nome: string;
-    ID: number;
-    Email: string;
-    Data: string;
-    Status: PaymentStatus;
-    ['Cliente Novo']: number;
-    ['Forma de Pagamento']: PaymentType;
-    ['Valor (R$)']: string;
-}
-
-interface DataNormalizado {
-    nome: string;
-    id: number;
-    email: string;
-    data: string;
-    clienteNovo: number;
-    formasPagamento: string;
-    status: string;
-    valor: string;
-}
+import { url } from './global';
 
 async function handleFetch(url: string) {
-    const data = await fetchData<PaymentReturn[]>(url);
+    const data = await fetchData<PaymentAPI[]>(url);
 
+    let transactions;
+    // if (!data) return; ou
     if (data && Array.isArray(data)) {
-        // type Guard com retorno null ==  p evitar erro de .map() --> quebra codigo
-        const dados = data.map((item) => {
-            return item.Status;
-        });
-        console.log(dados);
+        // type Guard com retorno null ==  p evitar erro de .map() --> quebra codigo | já estou fazendo acima (ln 9), escolher
+
+        // transacoes = data.map(normalizeData); //(forma simplificada)
+        console.log(data);
     }
 }
 
 handleFetch(url);
-
-/*
-return {
-  Nome: item['Valor (R$)'],
-  id: item.ID,
-  email: item.Email,
-  data: item.Data,
-  clienteNovo: item['Cliente Novo'],
-  formasPagamento: item['Forma de Pagamento'],
-  status: item.Status,
-  valor: item['Valor (R$)'],
-};
-*/

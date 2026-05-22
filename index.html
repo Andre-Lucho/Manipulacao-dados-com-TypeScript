@@ -1,18 +1,67 @@
 <!doctype html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Manipulação de dados - TS</title>
-    <style>
-      body {
-        background-color: #242424;
-        color: #ebeaea"
-      }
-    </style>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.ts"></script>
-  </body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Manipulação de dados - TS</title>
+        <style>
+            * {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }
+            body {
+                font-size: 1.25rem;
+                background-color: #171f2b;
+                color: #ebeaea;
+                margin: 2rem;
+            }
+
+            h2 {
+              margin: 2rem;
+            }
+
+            table {
+                margin:  1rem;
+                padding: 1rem;
+                text-align: left;
+            }
+
+            table tr:nth-child(even) {
+                background-color: #ebebeb25;
+            }
+
+            thead {
+                margin: 0rem;
+            }
+
+            tbody th {
+                /* padding: 0 1rem; */
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="app">
+            <h2>Dados da transação</h2>
+            <table id="transactions">
+                <thead>
+                    <td>
+                        <th>Id</th>
+                        <th>Nome</th>
+                        <th>Cliente Novo</th>
+                        <th>Email</th>
+                        <th>Data</th>
+                        <th>Compra</th>
+                        <th>Pagamento</th>
+                        <th>Status</th>
+                    </td>
+                </thead>
+                <tbody>
+                    <tr></tr>
+                </tbody>
+            </table>
+        </div>
+        <script type="module" src="/src/main.ts"></script>
+    </body>
 </html>
