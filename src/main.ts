@@ -12,8 +12,27 @@ async function handleFetch(url: string) {
 
         transactions = data.map((item) => normalizeData(item));
         // transacoes = data.map(normalizeData); //(forma simplificada)
-        console.log(data);
+        populatingTable(transactions);
     }
+}
+
+function populatingTable(transactions: Payment[]): void {
+    const table = document.querySelector('#transactions tbody');
+    if (!table) return;
+    transactions.forEach((item) => {
+        table.innerHTML += `
+        <tr>
+            <td>${item.id}</td>
+            <td>${item.name}</td>
+            <td>${item.newClient}</td>
+            <td>${item.email}</td>
+            <td>${item.date.getDate()}/${item.date.getMonth()}/${item.date.getFullYear()}</td>
+            <td>R$ ${item.currency}</td>
+            <td>${item.paymentType}</td>
+            <td>${item.status}</td>
+        </tr>
+    `;
+    });
 }
 
 handleFetch(url);
