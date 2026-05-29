@@ -8,10 +8,7 @@ async function handleFetch(url: string) {
     let transactions;
     // if (!data) return; ou
     if (data && Array.isArray(data)) {
-        // type Guard com retorno null ==  p evitar erro de .map() --> quebra codigo | já estou fazendo acima (ln 9), escolher
-
         transactions = data.map((item) => normalizeData(item));
-        // transacoes = data.map(normalizeData); //(forma simplificada)
         populatingTable(transactions);
     }
 }
