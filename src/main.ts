@@ -1,6 +1,7 @@
 import { fetchData } from './fetchData';
 import { url } from './global';
 import normalizeData from './normalizeData';
+import Statistics from './Statistics';
 
 async function handleFetch(url: string) {
     const data = await fetchData<PaymentAPI[]>(url);
@@ -10,6 +11,19 @@ async function handleFetch(url: string) {
     if (data && Array.isArray(data)) {
         transactions = data.map((item) => normalizeData(item));
         populatingTable(transactions);
+        populatingStatistics(transactions);
+    }
+}
+
+function populatingStatistics(transactions: Payment[]): void {
+    const data = new Statistics(transactions);
+
+    const totalElement = document.querySelector<HTMLElement>('#total span');
+    if (totalElement) {
+        totalElement.innerText += data.total.toLocaleString('pt-BR', {
+            style: 'currency',
+            currency: 'BRL',
+        });
     }
 }
 
