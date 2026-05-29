@@ -3,6 +3,5 @@
  */
 export default function currencyToNumber(currency: String): number | null {
     const number = Number(currency.replaceAll('.', '').replace(',', '.'));
-
     return isNaN(number) ? null : number;
 }

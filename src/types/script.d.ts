@@ -23,7 +23,7 @@ interface Payment {
     email: string;
     date: Date;
     status: PaymentStatus;
-    newClient: boolean;
+    newClient: string;
     paymentType: PaymentType;
     currency: string;
     value: number | null;

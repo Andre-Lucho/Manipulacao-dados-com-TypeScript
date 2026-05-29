@@ -8,7 +8,7 @@ export default function normalizeData(transaction: PaymentAPI): Payment {
         email: transaction.Email,
         date: stringToDate(transaction.Data),
         status: transaction.Status,
-        newClient: Boolean(transaction['Cliente Novo']),
+        newClient: String(transaction['Cliente Novo'] === 1 ? 'sim' : '--'),
         paymentType: transaction['Forma de Pagamento'],
         currency: transaction['Valor (R$)'],
         value: currencyToNumber(transaction['Valor (R$)']),
