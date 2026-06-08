@@ -1,7 +1,7 @@
 import { fetchData } from './fetchData';
 import { url } from './global';
 import normalizeData from './normalizeData';
-import Statistics from './statistics';
+import Statistics from './Statistics';
 
 async function handleFetch(url: string) {
     const data = await fetchData<PaymentAPI[]>(url);
