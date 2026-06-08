@@ -15,12 +15,24 @@ async function handleFetch(url: string) {
     }
 }
 
+function populatingList(list: CountList, elementId: string): void {
+    const element = document.querySelector<HTMLElement>(`#${elementId}`);
+    if (list && element) {
+        Object.keys(list).forEach((key) => {
+            element.innerHTML += `<p>${key}: ${list[key]}</p>`;
+        });
+    }
+}
+
 function populatingStatistics(transactions: Payment[]): void {
     const data = new Statistics(transactions);
-    console.log(data.status);
     const totalElement = document.querySelector<HTMLElement>('#total span');
 
-    if (totalElement) {
+    if (data) {
+        populatingList(data.paymentType, `payment-type`);
+        populatingList(data.status, `status`);
+
+        if (!totalElement) return;
         totalElement.innerText += data.total.toLocaleString('pt-BR', {
             style: 'currency',
             currency: 'BRL',
@@ -31,6 +43,7 @@ function populatingStatistics(transactions: Payment[]): void {
 function populatingTable(transactions: Payment[]): void {
     const table = document.querySelector('#transactions tbody');
     if (!table) return;
+
     transactions.forEach((item) => {
         table.innerHTML += `
         <tr>
