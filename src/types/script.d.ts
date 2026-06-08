@@ -28,3 +28,7 @@ interface Payment {
     currency: string;
     value: number | null;
 }
+
+interface CountList {
+    [key: string]: number;
+}
